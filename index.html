@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Histórias Mágicas para Pequenos Sonhadores</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cor-principal-claro: #B8E994; /* Verde pastel */
+            --cor-secundaria-claro: #FFD4A2; /* Laranja pastel */
+            --cor-acento-vibrante: #FF6B6B; /* Vermelho vibrante */
+            --cor-cta: #3B995B; /* Verde para CTA */
+            --cor-cta-hover: #2E7A4A;
+            --cor-texto: #535353;
+            --cor-fundo: #FDF9F3;
+            --cor-depoimento-bg: #E0E0FF; /* Lilás suave */
+            --cor-depoimento-borda: #A2A2FF;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            color: var(--cor-texto);
+            background-color: var(--cor-fundo);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animações e elementos flutuantes */
+        .floating-element {
+            position: absolute;
+            animation: float 6s ease-in-out infinite;
+            opacity: 0.8;
+            z-index: 1;
+        }
+        .star {
+            width: 20px;
+            height: 20px;
+            background-color: gold;
+            clip-path: polygon(50% 0%, 61.8% 35.1%, 99.4% 35.1%, 68.8% 57.1%, 79.4% 91.9%, 50% 70.9%, 20.6% 91.9%, 31.2% 57.1%, 0.6% 35.1%, 38.2% 35.1%);
+        }
+        .balloon {
+            width: 30px;
+            height: 40px;
+            background-color: var(--cor-principal-claro);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            position: relative;
+        }
+        .balloon::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 10px;
+            background-color: var(--cor-texto);
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-20px) scale(1.1); }
+            100% { transform: translateY(0px) scale(1); }
+        }
+
+        /* Layout e seções */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(180deg, var(--cor-principal-claro) 0%, var(--cor-secundaria-claro) 100%);
+            border-bottom-left-radius: 80px;
+            border-bottom-right-radius: 80px;
+        }
+
+        h1, h2 {
+            font-weight: 700;
+            color: var(--cor-texto);
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            margin-bottom: 20px;
+        }
+
+        .subtitle {
+            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: var(--cor-cta);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .cta-button:hover {
+            background-color: var(--cor-cta-hover);
+            transform: translateY(-3px);
+        }
+
+        .section {
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+        }
+
+        /* Seção de Destaque */
+        .mockups {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .mockups img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        /* Seção de Depoimentos */
+        .testimonials {
+            background-color: var(--cor-depoimento-bg);
+            border-radius: 40px;
+            padding: 60px 20px;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .testimonial-card {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .testimonial-card p {
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+
+        .testimonial-author {
+            font-weight: 700;
+            color: var(--cor-cta);
+        }
+
+        /* Oferta e Bônus */
+        .offer {
+            background-color: var(--cor-acento-vibrante);
+            color: #fff;
+            padding: 40px 20px;
+            border-radius: 20px;
+            margin: 60px auto;
+            max-width: 800px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .offer h2 {
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .offer-bonus {
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-top: 20px;
+        }
+
+        /* FAQ */
+        .faq {
+            text-align: left;
+        }
+
+        .faq h2 {
+            text-align: center;
+        }
+
+        .faq-item {
+            margin-bottom: 20px;
+        }
+
+        .faq-question {
+            font-weight: 700;
+            color: var(--cor-cta);
+            font-size: 1.1rem;
+            cursor: pointer;
+            position: relative;
+            padding-right: 30px;
+        }
+        .faq-question::after {
+            content: '+';
+            position: absolute;
+            right: 0;
+            transition: transform 0.3s;
+        }
+        .faq-question.active::after {
+            content: '-';
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            padding-top: 10px;
+            display: none;
+        }
+
+        /* Urgência */
+        .urgency {
+            background-color: var(--cor-principal-claro);
+            padding: 40px 20px;
+            border-radius: 20px;
+            margin: 60px auto;
+            text-align: center;
+            max-width: 800px;
+            animation: pulse 2s infinite;
+        }
+
+        .urgency p {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+            100% { transform: scale(1); }
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            background-color: var(--cor-texto);
+            color: #fff;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            header {
+                padding: 40px 20px;
+            }
+            .section {
+                padding: 40px 20px;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .cta-button {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="floating-element star" style="top: 10%; left: 5%;"></div>
+    <div class="floating-element balloon" style="top: 20%; right: 10%; animation-delay: 1.5s;"></div>
+    <div class="floating-element star" style="bottom: 15%; right: 20%; animation-delay: 3s;"></div>
+    <div class="floating-element balloon" style="bottom: 5%; left: 15%; animation-delay: 4.5s;"></div>
+
+    <header>
+        <div class="container">
+            <h1>Transforme a hora da historinha em um momento mágico com seu filho.</h1>
+            <p class="subtitle">Descubra um universo de imaginação com nossas historinhas digitais. Fortaleça o vínculo familiar, estimule a criatividade e inspire o amor pela leitura desde cedo, de forma divertida e acessível.</p>
+            <a href="#oferta" class="cta-button">Quero as historinhas agora!</a>
+        </div>
+    </header>
+
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Um mundo de aventuras na palma da sua mão.</h2>
+            <div class="mockups">
+                <img src="https://via.placeholder.com/350x450.png?text=Capa+de+livro" alt="Capa de historinha infantil em aquarela" style="transform: rotate(-5deg);">
+                <img src="https://via.placeholder.com/300x500.png?text=Tablet+com+historinha" alt="Mockup de tablet mostrando uma página de historinha">
+                <img src="https://via.placeholder.com/350x450.png?text=Capa+de+livro+2" alt="Outra capa de historinha infantil">
+            </div>
+        </div>
+    </section>
+
+    <section class="section testimonials">
+        <div class="container">
+            <h2 class="section-title">O que outras mães estão dizendo?</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <p>"Meu filho amou! As ilustrações são lindas e a história é super educativa. Virou nosso ritual antes de dormir."</p>
+                    <span class="testimonial-author">- Juliana, mãe do Leo (4 anos)</span>
+                </div>
+                <div class="testimonial-card">
+                    <p>"Ficou muito mais fácil ler pra minha filha em qualquer lugar. O formato digital é perfeito pra viagens de carro!"</p>
+                    <span class="testimonial-author">- Patricia, mãe da Alice (5 anos)</span>
+                </div>
+                <div class="testimonial-card">
+                    <p>"Finalmente um conteúdo de qualidade para os pequenos. Sinto que o tempo de tela dela agora é muito mais proveitoso."</p>
+                    <span class="testimonial-author">- Carolina, mãe da Sofia (3 anos)</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="oferta">
+        <div class="container">
+            <div class="urgency">
+                <p>Últimas unidades com desconto de lançamento!</p>
+            </div>
+            <div class="offer">
+                <h2>Garanta o pacote completo agora!</h2>
+                <p>Tenha acesso ilimitado a todas as nossas historinhas e transforme a leitura em um hobby familiar.</p>
+                <div class="offer-bonus">
+                    <p>⭐ Bônus Exclusivo: Garantia de satisfação de 7 dias!</p>
+                </div>
+                <a href="#" class="cta-button" style="margin-top: 20px;">Quero as historinhas agora!</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section faq">
+        <div class="container">
+            <h2 class="section-title">Perguntas Frequentes</h2>
+            <div class="faq-item">
+                <div class="faq-question">Como funciona a compra?</div>
+                <div class="faq-answer">É muito simples! Após a confirmação do pagamento, você receberá um e-mail com um link para acesso imediato a todas as historinhas digitais.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Posso ler no meu celular ou tablet?</div>
+                <div class="faq-answer">Sim! Nossos livros são em formato PDF, compatíveis com qualquer dispositivo (smartphones, tablets, computadores) e com todos os aplicativos de leitura.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">As historinhas são adequadas para crianças de 2 a 7 anos?</div>
+                <div class="faq-answer">Com certeza! O conteúdo foi desenvolvido por pedagogos e escritores infantis, com linguagem e temas adequados para cada faixa etária, estimulando a imaginação e o aprendizado.</div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Histórias Mágicas. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('.faq-question').forEach(item => {
+            item.addEventListener('click', event => {
+                const answer = item.nextElementSibling;
+                const isActive = item.classList.contains('active');
+
+                // Fecha todas as respostas abertas
+                document.querySelectorAll('.faq-question').forEach(q => {
+                    q.classList.remove('active');
+                    q.nextElementSibling.style.display = 'none';
+                });
+
+                // Abre ou fecha a resposta clicada
+                if (!isActive) {
+                    item.classList.add('active');
+                    answer.style.display = 'block';
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
